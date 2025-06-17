@@ -15,6 +15,7 @@ func TestGet(t *testing.T) {
 			input: "case2",
 			want:  "case2dfdfd",
 		},
+
 	}
 
 	for name, tt := range cases {
