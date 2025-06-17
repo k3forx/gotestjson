@@ -14,15 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - name: Set up Go
-    #   uses: actions/setup-go@v5
-    #   with:
-    #     go-version: '1.25rc1'
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.25rc1'
+        check-latest: true
 
     - name: Install dependencies
       run:
-        rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.4.linux-amd64.tar.gz
-        export PATH=$PATH:/usr/local/go/bin
         go mod tidy
 
     - name: Run go tests with color per test case
