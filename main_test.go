@@ -13,7 +13,7 @@ func TestGet(t *testing.T) {
 		},
 		"ng": {
 			input: "case2",
-			want:  "case1",
+			want:  "case2dfdfd",
 		},
 	}
 
