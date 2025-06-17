@@ -21,7 +21,7 @@ func TestGet(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			got := Get(tt.input)
 			if got != tt.want {
-				t.Attr("input", tt.input)
+				// t.Attr("input", tt.input)
 				t.Errorf("expected '%s', but got '%s'", tt.want, got)
 			}
 		})
