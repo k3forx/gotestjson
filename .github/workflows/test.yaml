@@ -17,10 +17,11 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version: '1.25rc1'
+        go-version: '1.24.4'
 
     - name: Install dependencies
-      run: go mod tidy
+      run:
+        go mod tidy
 
     - name: Run go tests with color per test case
       run: |
@@ -31,15 +32,16 @@ jobs:
         echo "::group::Test Case Results"
 
         # テスト結果JSONを1行ずつ読み込んで処理
-        cat results.json | jq -c 'select(.Action=="pass" or .Action=="fail") | select(.Test != null)' | while read -r line; do
-          TEST_NAME=$(echo "$line" | jq -r '.Test')
-          ACTION=$(echo "$line" | jq -r '.Action')
+        cat results.json | jq -c 'select(.Action=="pass" or .Action=="fail") | select(.Test != null)'
+        # cat results.json | jq -c 'select(.Action=="pass" or .Action=="fail") | select(.Test != null)' | while read -r line; do
+        #   TEST_NAME=$(echo "$line" | jq -r '.Test')
+        #   ACTION=$(echo "$line" | jq -r '.Action')
 
-          if [ "$ACTION" = "pass" ]; then
-            echo -e "\033[32m✅ $TEST_NAME passed\033[0m"
-          elif [ "$ACTION" = "fail" ]; then
-            echo -e "\033[31m❌ $TEST_NAME failed\033[0m"
-          fi
-        done
+        #   if [ "$ACTION" = "pass" ]; then
+        #     echo -e "\033[32m✅ $TEST_NAME passed\033[0m"
+        #   elif [ "$ACTION" = "fail" ]; then
+        #     echo -e "\033[31m❌ $TEST_NAME failed\033[0m"
+        #   fi
+        # done
 
         echo "::endgroup::"
